@@ -24,9 +24,7 @@ export const configs = tseslint.config(
             }
         },
         rules: {
-            "@typescript-eslint/no-explicit-any": "warn",
-            "@typescript-eslint/no-unsafe-assignment": "warn",
-            "@typescript-eslint/restrict-template-expressions": "warn"
+            "@typescript-eslint/no-explicit-any": "warn"
         }
     },
 );
