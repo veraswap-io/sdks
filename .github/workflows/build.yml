@@ -99,19 +99,19 @@ jobs:
       - run: pnpm run lint
         name: Lint All
       ### Release ###
-      #- if: ${{ github.ref == 'refs/heads/main' }}
-      #  name: Set publishing config
-      #  run: pnpm config set '//registry.npmjs.org/:_authToken' "${NPM_TOKEN}"
-      #  env:
-      #    NPM_TOKEN: ${{secrets.NPM_TOKEN}}
+      - if: ${{ github.ref == 'refs/heads/main' }}
+        name: Set publishing config
+        run: pnpm config set '//registry.npmjs.org/:_authToken' "${NPM_TOKEN}"
+        env:
+          NPM_TOKEN: ${{secrets.NPM_TOKEN}}
       ## Create Release PR
-      #- if: ${{ github.ref == 'refs/heads/main' }}
-      #  name: Create and publish versions
-      #  uses: changesets/action@v1
-      #  with:
-      #    version: pnpm ci:version
-      #    commit: "chore: update versions"
-      #    title: "chore: update versions"
-      #    publish: pnpm ci:publish
-      #  env:
-      #    GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - if: ${{ github.ref == 'refs/heads/main' }}
+        name: Create and publish versions
+        uses: changesets/action@v1
+        with:
+          version: pnpm ci:version
+          commit: "chore: update versions"
+          title: "chore: update versions"
+          publish: pnpm ci:publish
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
