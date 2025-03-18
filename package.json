@@ -32,7 +32,7 @@
     "turbo:link": "turbo link",
     "changeset:add": "changeset add",
     "ci:version": "changeset version",
-    "ci:publish": "pnpm publish -r"
+    "ci:publish": "pnpm publish -r --access public"
   },
   "devDependencies": {
     "@changesets/cli": "^2.28.1",
