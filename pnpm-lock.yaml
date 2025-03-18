@@ -35,9 +35,6 @@ importers:
       '@esbuild-plugins/node-resolve':
         specifier: ^0.2.2
         version: 0.2.2(esbuild@0.25.1)
-      '@veraswap/eslint-config':
-        specifier: latest*
-        version: link:../eslint-config
       esbuild:
         specifier: ^0.25.1
         version: 0.25.1
@@ -45,6 +42,9 @@ importers:
         specifier: 11.0.1
         version: 11.0.1
     devDependencies:
+      '@veraswap/eslint-config':
+        specifier: latest
+        version: link:../eslint-config
       depcheck:
         specifier: ^1.4.7
         version: 1.4.7
