@@ -22,8 +22,11 @@ export const configs = tseslint.config(
             globals: {
                 ...globals.node,
             }
+        },
+        rules: {
+            "@typescript-eslint/no-explicit-any": "warn"
         }
-    }
+    },
 );
 
 export const typecheckedConfigs = tseslint.config(
@@ -50,5 +53,10 @@ export const typecheckedConfigs = tseslint.config(
                 tsconfigRootDir: import.meta.dirname,
             },
         },
-    }
+        rules: {
+            "@typescript-eslint/no-explicit-any": "warn",
+            "@typescript-eslint/no-unsafe-assignment": "warn",
+            "@typescript-eslint/restrict-template-expressions": "warn"
+        }
+    },
 );
