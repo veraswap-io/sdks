@@ -215,12 +215,12 @@ export async function hardhatArtifactsExport(
     // Filter artifacts that don't match cached hash
     const contractArtifactsChanged = contractArtifacts.filter((artifact) => {
         const artifactHash = createHash("md5").update(JSON.stringify(artifact)).digest("hex");
-        return artifactExportsCache[artifact.contractName!] != artifactHash;
+        return artifactExportsCache[artifact.contractName] != artifactHash;
     });
 
     // For each artifact, write to .ts file
     contractArtifactsChanged.forEach((artifact) => {
-        const contractName = artifact.contractName!;
+        const contractName = artifact.contractName;
         // update cache
         artifactExportsCache[contractName] = createHash("md5").update(JSON.stringify(artifact)).digest("hex");
 
