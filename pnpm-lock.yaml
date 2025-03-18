@@ -113,12 +113,6 @@ importers:
       typescript:
         specifier: 5.8.2
         version: 5.8.2
-      vite:
-        specifier: ^6.2.2
-        version: 6.2.2(@types/node@22.13.10)
-      vitest:
-        specifier: ^3.0.8
-        version: 3.0.9(@types/node@22.13.10)
 
   packages/artifacts-export:
     dependencies:
