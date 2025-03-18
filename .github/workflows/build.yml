@@ -2,10 +2,10 @@ name: All
 
 on:
   # Run on all changes to these branches
-  push:
-    branches:
-      - main
-      - develop
+  # push:
+  # branches:
+  # - main
+  # - develop
   # Run only if PR exists
   pull_request:
     types: [assigned, opened, synchronize, reopened]
