@@ -36,7 +36,7 @@ importers:
         specifier: ^0.2.2
         version: 0.2.2(esbuild@0.25.1)
       '@veraswap/eslint-config':
-        specifier: workspace:*
+        specifier: latest*
         version: link:../eslint-config
       esbuild:
         specifier: ^0.25.1
