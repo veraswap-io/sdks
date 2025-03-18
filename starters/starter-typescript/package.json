@@ -4,10 +4,10 @@
   "keywords": [],
   "private": true,
   "type": "module",
-  "homepage": "https://github.com/veraswap-io/workspace-public",
+  "homepage": "https://github.com/veraswap-io/sdks",
   "repository": {
     "type": "git",
-    "url": "https://github.com/veraswap-io/workspace-public.git"
+    "url": "https://github.com/veraswap-io/sdks.git"
   },
   "copyright": "Copyright 2024 Veraswap",
   "license": "MIT",
@@ -66,7 +66,7 @@
     "vitest": "^3.0.8"
   },
   "bugs": {
-    "url": "https://github.com/veraswap-io/workspace-public/issues",
+    "url": "https://github.com/veraswap-io/sdks/issues",
     "email": "leo@veraswap.io"
   },
   "funding": "https://veraswap.io",

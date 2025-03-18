@@ -8,7 +8,7 @@
   "type": "module",
   "repository": {
     "type": "git",
-    "url": "https://github.com/veraswap-io/workspace-public.git"
+    "url": "https://github.com/veraswap-io/sdks.git"
   },
   "copyright": "Copyright 2024 Veraswap",
   "license": "MIT",
@@ -37,7 +37,7 @@
     "depcheck": "^1.4.7"
   },
   "bugs": {
-    "url": "https://github.com/veraswap-io/workspace-public/issues",
+    "url": "https://github.com/veraswap-io/sdks/issues",
     "email": "leo@veraswap.io"
   },
   "funding": "https://veraswap.io",
