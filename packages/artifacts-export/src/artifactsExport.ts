@@ -45,7 +45,7 @@ export type AbiExports = {
  * @returns abi exports
  */
 export function getAbiExports(abi: Abi): AbiExports {
-    // TODO: Reserved keywords (eg. abi, implementation, bytecode etc...)
+    // TODO: Reserved keywords (eg. abi, bytecode etc...)
 
     const names: Record<string, string> = {};
     const signatures: Record<string, boolean> = {};
@@ -135,7 +135,6 @@ export const abi = [...functions, ...events, ...errors] as const;
  * Takes an artifact and generates proper export file content.
  *   - Inidvidual keys are exported for better tree-shaking
  * @param artifact contains abi, bytecode, deployedBytecode
- * @param getImplementation function that takes artifact and returns implementation
  */
 export function getArtifactExportFileContent(artifact: Artifact): string {
     const abiExportsString = getAbiExportsString(getAbiExports(artifact.abi));
@@ -144,7 +143,7 @@ export function getArtifactExportFileContent(artifact: Artifact): string {
         = typeof artifact.deployedBytecode === "string" ? artifact.deployedBytecode : artifact.deployedBytecode.object;
 
     if (bytecode != "0x") {
-        return `import { Hex, Address } from "viem";
+        return `import { Hex } from "viem";
 
 ${abiExportsString}
 export const bytecode = "${bytecode}" as Hex;
