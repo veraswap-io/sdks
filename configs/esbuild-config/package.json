@@ -33,7 +33,7 @@
   },
   "peerDependencies": {
     "@esbuild-plugins/node-resolve": "^0.2.2",
-    "@veraswap/eslint-config": "workspace:*",
+    "@veraswap/eslint-config": "latest*",
     "esbuild": "^0.25.1",
     "glob": "11.0.1"
   },
