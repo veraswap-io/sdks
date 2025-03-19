@@ -1,5 +1,11 @@
 # @veraswap/artifacts-export
 
+## 0.1.3
+
+### Patch Changes
+
+- c5ab582: Remove linting from artifacts export, fix eslint config
+
 ## 0.1.2
 
 ### Patch Changes
