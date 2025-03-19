@@ -8,7 +8,11 @@ export const ANVIL_MNEMONIC = "test test test test test test test test test test
  * @returns `LocalAccount<"hd">`
  */
 export function getAnvilAccount(n = 0, options: { nonceManager?: NonceManager } = {}): HDAccount {
-    return mnemonicToAccount(ANVIL_MNEMONIC, { accountIndex: 0, addressIndex: n, ...options });
+    return mnemonicToAccount(ANVIL_MNEMONIC, {
+        accountIndex: 0,
+        addressIndex: n,
+        ...options,
+    });
 }
 
 export const port = 8556;

@@ -63,14 +63,12 @@ export function getAbiExports(abi: Abi): AbiExports {
             abiExports.functions.push("_constructor");
             // constructor is reserved keyword in js, use _constructor instead
             abiExports._constructor = f;
-        }
-        else if (f.type === "fallback" || f.type === "receive") {
+        } else if (f.type === "fallback" || f.type === "receive") {
             // Default reserved functions
             abiExports.abi.push(f.type);
             abiExports.functions.push(f.type);
             abiExports[f.type] = f;
-        }
-        else {
+        } else {
             const abiFormatted = formatAbiItem(f);
             const signature = toFunctionSignature(abiFormatted);
             // skip
@@ -99,8 +97,7 @@ export function getAbiExports(abi: Abi): AbiExports {
                 abiExports.abi.push(f.name);
                 exportsArray.push(f.name);
                 abiExports[f.name] = f;
-            }
-            else {
+            } else {
                 // TODO: Also export original signature
                 // Duplicate name, export signature
                 abiExports.abi.push(signatureClean);
@@ -138,8 +135,8 @@ export const abi = [...functions, ...events, ...errors] as const;
 export function getArtifactExportFileContent(artifact: Artifact): string {
     const abiExportsString = getAbiExportsString(getAbiExports(artifact.abi));
     const bytecode = typeof artifact.bytecode === "string" ? artifact.bytecode : artifact.bytecode.object;
-    const deployedBytecode
-        = typeof artifact.deployedBytecode === "string" ? artifact.deployedBytecode : artifact.deployedBytecode.object;
+    const deployedBytecode =
+        typeof artifact.deployedBytecode === "string" ? artifact.deployedBytecode : artifact.deployedBytecode.object;
 
     if (bytecode != "0x") {
         return `import { Hex } from "viem";
@@ -153,8 +150,7 @@ export const ${artifact.contractName} = {
     deployedBytecode,
 };
 `;
-    }
-    else {
+    } else {
         return `
 ${abiExportsString}
 export const ${artifact.contractName} = {
@@ -182,7 +178,7 @@ export function hardhatArtifactsExport(
     }
 
     // Get files paths for artifacts, this includes libraries
-    const artifactPaths = globSync(hardhatArtifactsGlob).filter(f => !f.endsWith(".dbg.json"));
+    const artifactPaths = globSync(hardhatArtifactsGlob).filter((f) => !f.endsWith(".dbg.json"));
     // console.debug(artifactPaths);
 
     // Filter contract/interface artifacts.
@@ -199,7 +195,7 @@ export function hardhatArtifactsExport(
         })
         .filter((artifact) => {
             const abi = artifact.abi;
-            const abiFunctions = abi.filter(a => a.type === "function" || a.type === "fallback");
+            const abiFunctions = abi.filter((a) => a.type === "function" || a.type === "fallback");
             return abiFunctions.length > 0;
         });
 
@@ -233,37 +229,31 @@ export function hardhatArtifactsExport(
     if (!allCached) {
         // All functions
         const functions = uniqBy(
-            flatten(
-                contractArtifacts.map(artifact => artifact.abi.filter(item => item.type === "function")),
-            ),
-            f => toFunctionSignature(formatAbiItem(f)),
+            flatten(contractArtifacts.map((artifact) => artifact.abi.filter((item) => item.type === "function"))),
+            (f) => toFunctionSignature(formatAbiItem(f)),
         );
         writeFileSync(
             join(artifactDir, "functions.ts"),
-            `export const functions = [${functions.map(f => JSON.stringify(f)).join(",")}] as const;`,
+            `export const functions = [${functions.map((f) => JSON.stringify(f)).join(",")}] as const;`,
         );
 
         // All events
         const events = uniqBy(
-            flatten(
-                contractArtifacts.map(artifact => artifact.abi.filter(item => item.type === "event")),
-            ),
-            f => `${toFunctionSignature(formatAbiItem(f))}-${f.inputs.filter(input => input.indexed).length}`,
+            flatten(contractArtifacts.map((artifact) => artifact.abi.filter((item) => item.type === "event"))),
+            (f) => `${toFunctionSignature(formatAbiItem(f))}-${f.inputs.filter((input) => input.indexed).length}`,
         );
         writeFileSync(
             join(artifactDir, "events.ts"),
-            `export const events = [${events.map(f => JSON.stringify(f)).join(",")}] as const;`,
+            `export const events = [${events.map((f) => JSON.stringify(f)).join(",")}] as const;`,
         );
         // All errors
         const errors = uniqBy(
-            flatten(
-                contractArtifacts.map(artifact => artifact.abi.filter(item => item.type === "error")),
-            ),
-            f => toFunctionSignature(formatAbiItem(f)),
+            flatten(contractArtifacts.map((artifact) => artifact.abi.filter((item) => item.type === "error"))),
+            (f) => toFunctionSignature(formatAbiItem(f)),
         );
         writeFileSync(
             join(artifactDir, "errors.ts"),
-            `export const errors = [${errors.map(f => JSON.stringify(f)).join(",")}] as const;`,
+            `export const errors = [${errors.map((f) => JSON.stringify(f)).join(",")}] as const;`,
         );
     }
 
@@ -276,8 +266,7 @@ export function hardhatArtifactsExport(
         console.debug(
             `Exported ${contractArtifactsChanged.length} Artifact file${contractArtifactsChanged.length > 1 ? "s" : ""} successfully`,
         );
-    }
-    else {
+    } else {
         console.debug("Nothing to export");
     }
 }
