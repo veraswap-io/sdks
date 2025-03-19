@@ -1,5 +1,11 @@
 # @veraswap/eslint-config
 
+## 0.1.4
+
+### Patch Changes
+
+- 677f2ec: Remove sylistic eslint
+
 ## 0.1.3
 
 ### Patch Changes
