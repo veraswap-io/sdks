@@ -1,5 +1,4 @@
 import { globSync } from "glob";
-import { ESLint } from "eslint";
 import { flatten, uniqBy } from "lodash-es";
 import { Hex, Abi } from "viem";
 import { toFunctionSignature } from "viem/utils";
@@ -169,7 +168,7 @@ export const DEFAULT_ARTIFACTS_DIR = "./src/artifacts";
 export const DEFAULT_CACHE_DIR = "./cache";
 export const DEFAULT_ARTIFACTS_GLOB = "artifacts/contracts/**/*.json";
 
-export async function hardhatArtifactsExport(
+export function hardhatArtifactsExport(
     artifactDir = DEFAULT_ARTIFACTS_DIR,
     cacheDir = DEFAULT_CACHE_DIR,
     hardhatArtifactsGlob: string | string[] = DEFAULT_ARTIFACTS_GLOB,
@@ -273,33 +272,10 @@ export async function hardhatArtifactsExport(
     // save cache
     writeFileSync(artifactExportsCachePath, JSON.stringify(artifactExportsCache));
 
-    // Lint changed files
-    const eslintArtifactsFiles = contractArtifactsChanged.map(artifact =>
-        join(artifactDir, `${artifact.contractName}.ts`),
-    );
-    if (eslintArtifactsFiles.length > 0) {
-        // files changed, lint functions.ts, events.ts, errors.ts
-        eslintArtifactsFiles.push(join(artifactDir, "functions.ts"));
-        eslintArtifactsFiles.push(join(artifactDir, "events.ts"));
-        eslintArtifactsFiles.push(join(artifactDir, "errors.ts"));
-
-        // files changed, lint index.ts
-        eslintArtifactsFiles.push(join(artifactDir, "index.ts"));
-    }
-
-    const eslintFiles = [...eslintArtifactsFiles];
-    if (eslintFiles.length > 0) {
+    if (contractArtifactsChanged.length > 0) {
         console.debug(
-            `Exported ${eslintArtifactsFiles.length} Artifact file${eslintFiles.length > 1 ? "s" : ""} successfully`,
+            `Exported ${contractArtifactsChanged.length} Artifact file${contractArtifactsChanged.length > 1 ? "s" : ""} successfully`,
         );
-        console.debug("Please wait for linting to complete...");
-
-        // files changed, lint index.ts too
-        eslintFiles.push(join(artifactDir, "index.ts"));
-
-        const eslint = new ESLint({ fix: true });
-        const results = await eslint.lintFiles(eslintFiles);
-        await ESLint.outputFixes(results);
     }
     else {
         console.debug("Nothing to export");

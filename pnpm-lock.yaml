@@ -119,9 +119,6 @@ importers:
       abitype:
         specifier: ^1.0.6
         version: 1.0.8(typescript@5.8.2)
-      eslint:
-        specifier: ^9.22.0
-        version: 9.22.0
       glob:
         specifier: 11.0.1
         version: 11.0.1
