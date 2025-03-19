@@ -15,17 +15,13 @@ export function exportForFile(f: string, type: ExportType = "named"): string {
     const module = basename(f).replace(".js", "");
     if (type === "named") {
         return `export * from "${fClean}";`;
-    }
-    else if (type === "namedModule") {
+    } else if (type === "namedModule") {
         return `export { ${module} } from "${fClean}";`;
-    }
-    else if (type === "default") {
+    } else if (type === "default") {
         return `export { default as ${module}} from "${fClean}";`;
-    }
-    else if (type === "all") {
+    } else if (type === "all") {
         return `export *, { default as ${module}} from "${fClean}";`;
-    }
-    else {
+    } else {
         throw new Error(`Invalid export type ${type}`);
     }
 }
@@ -35,7 +31,7 @@ export function exportForFile(f: string, type: ExportType = "named"): string {
  * @param files list of file paths to export
  */
 export function generateBarrelFileContentForModules(files: readonly string[], type: ExportType = "named"): string {
-    return files.map(f => exportForFile(f, type)).join("\n") + "\n";
+    return files.map((f) => exportForFile(f, type)).join("\n") + "\n";
 }
 
 /**
@@ -44,8 +40,8 @@ export function generateBarrelFileContentForModules(files: readonly string[], ty
  */
 export function generateBarrelFileContentForDir(path: string, type: ExportType = "named"): string {
     const files = readdirSync(path)
-        .map(f => `./${f.replace(".ts", ".js")}`)
-        .filter(f => basename(f) !== "index.js");
+        .map((f) => `./${f.replace(".ts", ".js")}`)
+        .filter((f) => basename(f) !== "index.js");
     const barrelFileContents = generateBarrelFileContentForModules(files, type);
 
     return barrelFileContents;

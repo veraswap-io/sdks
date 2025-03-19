@@ -1,6 +1,7 @@
 import eslint from "@eslint/js";
 import tseslint from "typescript-eslint";
 import stylistic from "@stylistic/eslint-plugin"
+import eslintPluginPrettierRecommended from "eslint-plugin-prettier/recommended"
 import globals from "globals";
 
 export const configs = tseslint.config(
@@ -16,6 +17,7 @@ export const configs = tseslint.config(
         quotes: "double",
         semi: true,
         jsx: true,
+        braceStyle: "1tbs"
     }),
     {
         languageOptions: {
@@ -27,6 +29,8 @@ export const configs = tseslint.config(
             "@typescript-eslint/no-explicit-any": "warn"
         }
     },
+    // https://github.com/prettier/eslint-plugin-prettier?tab=readme-ov-file#configuration-new-eslintconfigjs
+    eslintPluginPrettierRecommended,
 );
 
 export const typecheckedConfigs = tseslint.config(
@@ -59,4 +63,6 @@ export const typecheckedConfigs = tseslint.config(
             "@typescript-eslint/restrict-template-expressions": "warn"
         }
     },
+    // https://github.com/prettier/eslint-plugin-prettier?tab=readme-ov-file#configuration-new-eslintconfigjs
+    eslintPluginPrettierRecommended,
 );

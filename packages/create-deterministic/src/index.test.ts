@@ -60,7 +60,9 @@ describe("DeterministicDeployer.test.ts", function () {
 
         // Wait for receipt
         if (resultDeployMyContract.hash) {
-            const receipt = await publicClient.waitForTransactionReceipt({ hash: resultDeployMyContract.hash });
+            const receipt = await publicClient.waitForTransactionReceipt({
+                hash: resultDeployMyContract.hash,
+            });
             // receipt.contractAddress null since using factory
             expect(receipt.contractAddress).toBe(null);
         }
