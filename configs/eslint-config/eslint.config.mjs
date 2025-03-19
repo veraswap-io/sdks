@@ -1,6 +1,5 @@
 import eslint from "@eslint/js";
 import tseslint from "typescript-eslint";
-import stylistic from "@stylistic/eslint-plugin"
 import eslintPluginPrettierRecommended from "eslint-plugin-prettier/recommended"
 import globals from "globals";
 
@@ -11,14 +10,6 @@ export const configs = tseslint.config(
     // https://typescript-eslint.io/users/configs/#stylistic
     tseslint.configs.stylistic,
     // https://typescript-eslint.io/users/what-about-formatting
-    // https://eslint.style/guide/config-presets
-    stylistic.configs.customize({
-        indent: 4,
-        quotes: "double",
-        semi: true,
-        jsx: true,
-        braceStyle: "1tbs"
-    }),
     {
         languageOptions: {
             globals: {
@@ -40,13 +31,6 @@ export const typecheckedConfigs = tseslint.config(
     // https://typescript-eslint.io/users/configs/#stylistic-type-checked
     tseslint.configs.stylisticTypeChecked,
     // https://typescript-eslint.io/users/what-about-formatting
-    // https://eslint.style/guide/config-presets
-    stylistic.configs.customize({
-        indent: 4,
-        quotes: "double",
-        semi: true,
-        jsx: true,
-    }),
     {
         languageOptions: {
             globals: {
