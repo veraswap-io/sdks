@@ -8,6 +8,7 @@
   "editor.formatOnSaveMode": "file",
   "editor.fontSize": 18,
   "editor.detectIndentation": true,
+  "terminal.integrated.fontSize": 20,
   "files.watcherExclude": {
     "**/_cjs/**": true,
     "**/_esm/**": true,
@@ -18,6 +19,8 @@
     "**/lib/**": true,
     "**/node_modules/**": true,
     "**/coverage/**": true,
+    "**/cache/**": true,
+    "**/out/**": true,
     ".turbo": true,
   },
   "search.exclude": {
@@ -30,6 +33,8 @@
     "**/lib/**": true,
     "**/node_modules/**": true,
     "**/coverage/**": true,
+    "**/cache/**": true,
+    "**/out/**": true,
     ".turbo": true,
   },
   "search.followSymlinks": false,
